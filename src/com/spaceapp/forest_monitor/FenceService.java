@@ -12,6 +12,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Handler;
+import android.util.Log;
 
 public class FenceService
 {
@@ -24,7 +25,6 @@ public class FenceService
 	private Handler handler;
 	private Getdata mydata;
 	private String username;
-	Boolean[] checkbox_choice=new Boolean[5];
 	private Runnable runnable;
 	
 	public FenceService(Context context)
@@ -44,6 +44,7 @@ public class FenceService
 	{
 		if(opened_no==1)
 		{
+			Log.i("start", "fence");
  			no=1;
  			receive=new boolean[10000];
  			my_fences_checked=new Boolean[1000][1000];// no of max fences
@@ -91,8 +92,6 @@ public class FenceService
 		ArrayList<String> admin_catagory = mydata.getAdminData("catagory");
 		for(int i=0;i<admin_fencename.size();i++)
 		{
-			if(checkbox_choice[Integer.valueOf(admin_catagory.get(i))-1])
-			{
 				String result=postData(admin_fencename.get(i));
     			ArrayList<String> condition= mydata.convertStringtoArrayList(result,"condition");
 				ArrayList<String> message= mydata.convertStringtoArrayList(result,"message");
@@ -127,7 +126,6 @@ public class FenceService
 				}
 			}
 		}
-	}
 	
 	
 	@SuppressWarnings("deprecation")
@@ -156,8 +154,10 @@ public class FenceService
 		GPSTracker location = new GPSTracker(mContext);
 		double longitude = location.getLongitude();
 		double latitude = location.getLatitude();
+		
         String lt = String.valueOf(latitude);
         String lg = String.valueOf(longitude);
+        Log.i("position", "latitude="+lt+"longitude"+lg);
 		Receiver connect=new Receiver(mContext);
 		connect.setPath("polygon1/check_inside_polygon.php");
 		connect.addNameValuePairs("value1", lg);

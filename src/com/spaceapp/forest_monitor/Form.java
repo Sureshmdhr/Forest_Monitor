@@ -104,7 +104,8 @@ public class Form extends Activity {
 	public void postData(String username,String password)
 	{
 		Receiver connect=new Receiver(Form.this);
-		connect.setPath("/login.php");
+		
+		connect.setPath("/forestmonitor/login.php");
 		connect.addNameValuePairs("username",username);
 		connect.addNameValuePairs("password",password);
 		AsyncTask<Void, Void, String> output = connect.execute(new Void[0]);
@@ -174,6 +175,7 @@ public class Form extends Activity {
 			public void onClick(final DialogInterface dialog, final int which) 
 			{
 				session.createLoginSession("user",uname);
+				session.createTimesSession(1);
 				Intent intent=new Intent(getApplicationContext(),MainActivity.class);
 				startActivity(intent);
 				finish();

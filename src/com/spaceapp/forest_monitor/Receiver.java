@@ -18,10 +18,9 @@ import android.os.AsyncTask;
 
 public class Receiver extends AsyncTask<Void, Void, String>
 {
-	private String host = "http://192.168.19.1/forestmonitor/";
+	private String host = "http://192.168.19.1/";
 	private List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 	private String path;
-	private ProgressDialog pDialog;
 	private Context mContext=null;
 
 	public Receiver()
@@ -73,8 +72,6 @@ public class Receiver extends AsyncTask<Void, Void, String>
 
 	protected void onPostExecute(String paramString)
 	{
-        if(mContext!=null)
-        	pDialog.dismiss();
 		super.onPostExecute(paramString);
 	}	
 
@@ -86,18 +83,6 @@ public class Receiver extends AsyncTask<Void, Void, String>
 	protected void onPreExecute()
 	{
 		super.onPreExecute();
-		if(mContext!=null)
-		{
-			pDialog = new ProgressDialog(mContext,
-	                ProgressDialog.THEME_DEVICE_DEFAULT_DARK);
-	        pDialog.setTitle("Please wait");
-	        pDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-	        pDialog.setMessage("Loading data...");
-	        pDialog.setIndeterminate(true);
-	        pDialog.setCancelable(false);
-	        pDialog.setInverseBackgroundForced(true);
-	        pDialog.show();
-		}
 	}
 
 	public void setHost(String paramString)

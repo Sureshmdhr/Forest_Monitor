@@ -101,7 +101,7 @@ public class RegisterActivity extends Activity {
 	protected void postData() 
 	{
 		Receiver connect=new Receiver(this);
-		connect.setPath("/register.php");
+		connect.setPath("/forestmonitor/register.php");
 		connect.addNameValuePairs("fullname",firstname.getText().toString());
 		connect.addNameValuePairs("username",username.getText().toString());
 		connect.addNameValuePairs("password",password.getText().toString());

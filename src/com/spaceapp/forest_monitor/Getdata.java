@@ -49,7 +49,9 @@ public class Getdata {
 		AsyncTask<Void, Void, String> output = connect.execute(new Void[0]);
 		try 
 		{
+			Log.i("admin_data", output.get());
 			 result=convertStringtoArrayList(output.get(),columnname);
+			 
 		}
 		catch (InterruptedException e) 
 		{

@@ -75,7 +75,9 @@ public class MainActivity extends MenuActivity  implements AdapterView.OnItemSel
 		
 	      StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
 	      StrictMode.setThreadPolicy(policy);
-	      
+
+	    new FenceService(getApplicationContext()).startService(15000);
+   
 		spinner1=(Spinner)findViewById(R.id.spinner1);
 		desc=(EditText)findViewById(R.id.description);
 		spinner2=(Spinner)findViewById(R.id.spinner2);
@@ -108,8 +110,6 @@ public class MainActivity extends MenuActivity  implements AdapterView.OnItemSel
 		{
 			public void onClick(View v) 
 			{
-				if(!spinner2.isEnabled())
-				{
 					Receiver connect=new Receiver();
 					connect.setHost(host);
 					connect.setPath("/forestmonitor/upload.php");
@@ -168,13 +168,9 @@ public class MainActivity extends MenuActivity  implements AdapterView.OnItemSel
 						e1.printStackTrace();
 					}
 					
-					toaster("Report Successful");
+					toaster("Thank You For Your Input");
 				}
-				else
-				{
-					toaster("Select Reason");
-				}
-			}
+			
 
 		});
 	}
